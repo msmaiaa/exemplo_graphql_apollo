@@ -1,0 +1,12 @@
+version: "3"
+services:
+  db:
+    image: "postgres:13-alpine"
+    container_name: "exemplo_gql_db"
+    restart: "always"
+    environment:
+      POSTGRES_USER: "usuario"
+      POSTGRES_PASSWORD: "senha"
+      POSTGRES_DB: "mangadb"
+    ports:
+      - 5432:5432
