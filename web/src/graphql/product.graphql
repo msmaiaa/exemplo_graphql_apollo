@@ -1,0 +1,69 @@
+query Products {
+  products {
+    id
+    name
+    image_url
+    price
+  }
+}
+
+query Product($productId: Float!) {
+  product(id: $productId) {
+    id
+    name
+    description
+    image_url
+    price
+    createdAt
+    created_by {
+      username
+    }
+  }
+}
+
+mutation CreateProduct(
+  $price: Float!
+  $description: String!
+  $name: String!
+  $imageUrl: String!
+) {
+  createProduct(
+    price: $price
+    description: $description
+    name: $name
+    image_url: $imageUrl
+  ) {
+    id
+    name
+    price
+  }
+}
+
+mutation DeleteProduct($deleteProductId: Float!) {
+  deleteProduct(id: $deleteProductId)
+}
+
+mutation UpdateProduct(
+  $productId: Float!
+  $price: Float!
+  $imageUrl: String!
+  $description: String!
+  $name: String!
+) {
+  updateProduct(
+    productId: $productId
+    price: $price
+    image_url: $imageUrl
+    description: $description
+    name: $name
+  ) {
+    id
+    name
+    description
+    image_url
+    price
+    created_by {
+      username
+    }
+  }
+}
