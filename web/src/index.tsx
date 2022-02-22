@@ -31,6 +31,8 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+//  aqui nós usamos utilizamos o "link" para setar o token automaticamente em todas as requests com o setContext
+//  o padrão seria passar a chave "uri" com o valor sendo a url da api
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),

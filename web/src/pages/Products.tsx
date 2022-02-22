@@ -9,9 +9,12 @@ const Products = () => {
 
   return (
     <Container>
-      <div className="flex w-1/2 flex-wrap">
+      <div className="flex w-full flex-wrap">
         {data?.products?.map((product) => (
-          <div className="flex flex-col items-center w-1/2 mt-24">
+          <div
+            className="flex flex-col items-center w-2/4 mt-24"
+            key={product.id}
+          >
             <img
               onClick={() => onProductClick(product.id)}
               src={product.image_url}

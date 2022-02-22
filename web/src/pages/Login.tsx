@@ -72,14 +72,14 @@ const Login = () => {
           name="email"
           type="text"
           placeholder="email"
-          className="w-42 mb-2 pl-2 bg-inherit border-b-2"
+          className="w-42 mb-2 pl-2 bg-inherit border-b-2 text-gray-300"
         />
         <input
           onChange={onChangeInput}
           name="password"
           type="password"
           placeholder="senha"
-          className="w-42 pl-2 bg-inherit border-b-2"
+          className="w-42 pl-2 bg-inherit border-b-2 text-gray-300"
         />
         <button
           onClick={() => onSubmit("login")}
