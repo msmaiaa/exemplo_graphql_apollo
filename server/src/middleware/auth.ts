@@ -3,9 +3,12 @@ import { MiddlewareFn } from "type-graphql";
 import { CONST } from "../constants";
 import { AppContext } from "../types";
 
+const splitToken = (token: string | undefined) =>
+  token?.split("Bearer")[1].trim();
+
 export const useAuth: MiddlewareFn<AppContext> = ({ context }, next) => {
   try {
-    const token = context.req.get("Authorization");
+    const token = splitToken(context.req.get("Authorization"));
     if (!token) throw new Error("Token faltando");
 
     const tokenPayload = verify(token, CONST.JWT_SECRET);
