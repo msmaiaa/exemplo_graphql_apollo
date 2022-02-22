@@ -70,7 +70,7 @@ export type Product = {
   createdAt: Scalars['DateTime'];
   created_by: User;
   description: Scalars['String'];
-  id: Scalars['String'];
+  id: Scalars['Float'];
   image_url: Scalars['String'];
   name: Scalars['String'];
   price: Scalars['Float'];
@@ -120,14 +120,14 @@ export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'Lo
 export type ProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ProductsQuery = { __typename?: 'Query', products: Array<{ __typename?: 'Product', id: string, name: string, image_url: string, price: number }> };
+export type ProductsQuery = { __typename?: 'Query', products: Array<{ __typename?: 'Product', id: number, name: string, image_url: string, price: number }> };
 
 export type ProductQueryVariables = Exact<{
   productId: Scalars['Float'];
 }>;
 
 
-export type ProductQuery = { __typename?: 'Query', product: { __typename?: 'Product', id: string, name: string, description: string, image_url: string, price: number, createdAt: any, created_by: { __typename?: 'User', username: string } } };
+export type ProductQuery = { __typename?: 'Query', product: { __typename?: 'Product', id: number, name: string, description: string, image_url: string, price: number, createdAt: any, created_by: { __typename?: 'User', username: string } } };
 
 export type CreateProductMutationVariables = Exact<{
   price: Scalars['Float'];
@@ -137,7 +137,7 @@ export type CreateProductMutationVariables = Exact<{
 }>;
 
 
-export type CreateProductMutation = { __typename?: 'Mutation', createProduct: { __typename?: 'Product', id: string, name: string, price: number } };
+export type CreateProductMutation = { __typename?: 'Mutation', createProduct: { __typename?: 'Product', id: number, name: string, price: number } };
 
 export type DeleteProductMutationVariables = Exact<{
   deleteProductId: Scalars['Float'];
@@ -155,7 +155,7 @@ export type UpdateProductMutationVariables = Exact<{
 }>;
 
 
-export type UpdateProductMutation = { __typename?: 'Mutation', updateProduct: { __typename?: 'Product', id: string, name: string, description: string, image_url: string, price: number, created_by: { __typename?: 'User', username: string } } };
+export type UpdateProductMutation = { __typename?: 'Mutation', updateProduct: { __typename?: 'Product', id: number, name: string, description: string, image_url: string, price: number, created_by: { __typename?: 'User', username: string } } };
 
 
 export const MeDocument = gql`

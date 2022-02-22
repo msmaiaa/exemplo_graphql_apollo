@@ -13,9 +13,9 @@ import { User } from "./User";
 @ObjectType()
 @Entity()
 export class Product extends BaseEntity {
-  @Field(() => String)
+  @Field(() => Number)
   @PrimaryGeneratedColumn("increment")
-  id: string;
+  id: number;
 
   @Field(() => String)
   @Column()

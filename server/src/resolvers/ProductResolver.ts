@@ -24,6 +24,7 @@ export class ProductResolver {
     @Ctx() ctx: AppContext
   ) {
     try {
+      if (!name || !description || !image_url || !price) throw new Error("não");
       const user = await User.findOne(ctx.user?.id);
 
       const createdProduct = getConnection().getRepository("Product").save({
@@ -36,6 +37,7 @@ export class ProductResolver {
 
       return createdProduct;
     } catch (e: any) {
+      console.log("uhasduiahsidashjidas");
       throw new Error(e);
     }
   }
@@ -91,6 +93,8 @@ export class ProductResolver {
     @Arg("productId") productId: number
   ) {
     try {
+      if (!name || !description || !image_url || !price || !productId)
+        throw new Error("não");
       const product = await Product.findOne(productId, {
         relations: ["created_by"],
       });

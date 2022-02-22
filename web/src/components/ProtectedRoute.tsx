@@ -7,7 +7,7 @@ const ProtectedRoute = () => {
   const { data: loggedIn } = useMeQuery();
 
   useEffect(() => {
-    if (!loggedIn) navigate("/login");
+    if (!loggedIn) navigate("/");
   }, [loggedIn, navigate]);
 
   return <Outlet />;

@@ -3,12 +3,22 @@ import Container from "../components/Container";
 import { useProductsQuery } from "../generated/graphql";
 
 const Products = () => {
-  const { data } = useProductsQuery();
+  const { data } = useProductsQuery({
+    fetchPolicy: "no-cache",
+  });
   const navigate = useNavigate();
-  const onProductClick = (id: string) => navigate(`/product/${id}`);
+  const onProductClick = (id: number) => navigate(`/product/${id}`);
+
+  const onAddProduct = () => navigate("/products/new");
 
   return (
     <Container>
+      <button
+        onClick={onAddProduct}
+        className="pt-2 pb-2 rounded w-40 bg-gray-50"
+      >
+        Adicionar produto
+      </button>
       <div className="flex w-full flex-wrap">
         {data?.products?.map((product) => (
           <div
