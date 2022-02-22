@@ -1,3 +1,9 @@
+query Me {
+  me {
+    id
+  }
+}
+
 mutation Signup($password: String!, $email: String!) {
   signup(password: $password, email: $email)
 }
