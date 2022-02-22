@@ -27,13 +27,12 @@ export class UserResolver {
   async me(@Ctx() ctx: AppContext) {
     const user = ctx.user;
     if (!user) return null;
-
     try {
       const foundUser = await User.findOne({
         id: user.id,
       });
       return foundUser;
-    } catch (e) {
+    } catch (e: any) {
       console.error(e);
       return null;
     }
@@ -42,12 +41,17 @@ export class UserResolver {
   @Mutation(() => Boolean)
   async signup(@Arg("email") email: string, @Arg("password") password: string) {
     try {
+      if (!email) throw new Error("envie o email, seu animal!");
+      if (!password) throw new Error("envie a senha, seu animal!");
       const foundUser = await User.findOne({
         where: {
           email,
         },
       });
-      if (foundUser) throw new Error("Já existe um usuário com esse email.");
+      if (foundUser)
+        throw new Error(
+          "já existe um usuário com esse email, vc tomou seu remédio pra amnésia hoje?"
+        );
 
       await User.insert({
         email,
@@ -56,13 +60,16 @@ export class UserResolver {
       });
       return true;
     } catch (e: any) {
-      throw new Error(e);
+      throw new Error(e.message);
     }
   }
 
   @Mutation(() => LoginResponse)
   async login(@Arg("email") email: string, @Arg("password") password: string) {
     try {
+      if (!email) throw new Error("envie o email, seu animal!");
+      if (!password) throw new Error("envie a senha, seu animal!");
+
       const foundUser = await User.findOne({
         where: {
           email,
@@ -70,10 +77,13 @@ export class UserResolver {
       });
 
       if (!foundUser)
-        throw new Error("Não existe um usuário com o email informado.");
+        throw new Error(
+          "vc é burro? não existe ninguém cadastrado com esse email"
+        );
 
       const isValidPassword = await compare(password, foundUser.password);
-      if (!isValidPassword) throw new Error("Senha inválida.");
+      if (!isValidPassword)
+        throw new Error("LOGADO!!! mentira, a senha está errada :(");
 
       const accessToken = signToken({
         id: foundUser.id,
@@ -83,7 +93,7 @@ export class UserResolver {
         token: accessToken,
       };
     } catch (e: any) {
-      throw new Error(e);
+      throw new Error(e.message);
     }
   }
 }
